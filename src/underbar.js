@@ -336,6 +336,21 @@
   // input array. For a tip on how to make a copy of an array, see:
   // http://mdn.io/Array.prototype.slice
   _.shuffle = function(array) {
+    var n = array.length, j = 2;
+    var a = _.reduce(array,function(tot,item){
+      var i = Math.random();
+      if (i in Object.keys(tot)) {
+        tot[j] = item;
+        j++;
+      } else {
+        tot[i] = item;
+      }
+      return tot;
+      },{})
+    var b = Object.keys(a).sort();
+    return _.map(b,function(item) {
+      return a[item];
+    })
   };
 
 
