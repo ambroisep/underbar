@@ -190,9 +190,9 @@
   // Determine whether all of the elements match a truth test.
   _.every = function(collection, iterator) {
     // TIP: Try re-using reduce() here.    
+    var callback = (iterator || _.identity);
     return _.reduce(collection, function(wasFound, item) {
       if (wasFound) {
-        var callback = (iterator || _.identity);
         return Boolean(callback(item));
       }
       return false;
@@ -203,6 +203,10 @@
   // provided, provide a default one
   _.some = function(collection, iterator) {
     // TIP: There's a very clever way to re-use every() here.
+    var callback = (iterator || _.identity)
+    return !(_.every(collection, function(item) {
+      return !(callback(item));
+    }));
   };
 
 
