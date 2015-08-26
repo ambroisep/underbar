@@ -229,11 +229,28 @@
   //     bla: "even more stuff"
   //   }); // obj1 now contains key1, key2, key3 and bla
   _.extend = function(obj) {
-  };
+    var result = obj;
+    _.each(arguments,function(item) {
+      for(var i in item) {
+        result[i]=item[i];
+      }
+    });
+    return result;
+  }
+
+
+  ;
 
   // Like extend, but doesn't ever overwrite a key that already
   // exists in obj
   _.defaults = function(obj) {
+    var result = obj;
+    _.each(arguments,function(item) {
+      for(var i in item) {
+        result[i]= _.contains(Object.keys(result),i) ? result[i] : item[i];
+      }
+    });
+    return result;
   };
 
 
