@@ -341,7 +341,7 @@
       var i = Math.random();
       if (i in Object.keys(tot)) {
         tot[j] = item;
-        j++;
+        j++; //this part is just to make sure that if the random gives twice the same number, I don't loose an item of the initial array.
       } else {
         tot[i] = item;
       }
